@@ -37,7 +37,7 @@ def crawl(url):
 
 # imgs['url'] = imgs.img.apply(crawl)
 
-imgs = pd.read_csv(os.path.join(path, 'train_allmetada_json/train_img_filepath.txt'), header=None, names=['img'])
+imgs = pd.read_csv(os.path.join(path, 'train_allmetadata_json/train_img_filepath.txt'), header=None, names=['img'])
 # img count 305613
 for j in range(0, 3050):
     print('save:', j * 100, (j + 1) * 100)
@@ -119,8 +119,8 @@ def get_count(x):
         return x[0].split(":")[1]
 
 
-train_add = pd.read_json(os.path.join(path, 'train_allmetada_json/train_additional_information.json'))
-test_add = pd.read_json(os.path.join(path, 'test_allmetada_json/test_additional_information.json'))
+train_add = pd.read_json(os.path.join(path, 'train_allmetadata_json/train_additional_information.json'))
+test_add = pd.read_json(os.path.join(path, 'test_allmetadata_json/test_additional_information.json'))
 all_data = pd.concat([train_add, test_add], axis=0, sort=False)
 pa = all_data.Pathalias.unique()
 for j in range(0, 365):
