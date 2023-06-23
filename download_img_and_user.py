@@ -7,12 +7,14 @@ import os
 import time
 import re
 import json
+import lxml
+import cchardet
 from concurrent.futures import ProcessPoolExecutor
 
 path = './data'
 requests.adapters.DEFAULT_RETRIES = 5
 s = requests.session()
-s.keep_alive = False
+# s.keep_alive = False
 
 
 # get train data img url
@@ -22,9 +24,9 @@ def crawl(url):
         try:
             page = s.get(url)
         except:
-            time.sleep(5)
+            time.sleep(1)
             continue
-    soup = BeautifulSoup(page.content, 'html.parser')
+    soup = BeautifulSoup(page.content, 'lxml')
     imgs_list = soup.find_all('img')
     if len(imgs_list) != 0:
         img_url = 'https:' + imgs_list[-1]['src']
@@ -35,7 +37,7 @@ def crawl(url):
 
 # imgs['url'] = imgs.img.apply(crawl)
 
-imgs = pd.read_csv(os.path.join(path, 'train_all_json/train_img.txt'), header=None, names=['img'])
+imgs = pd.read_csv(os.path.join(path, 'train_all_json/train_img_filepath.txt'), header=None, names=['img'])
 # img count 305613
 for j in range(0, 3050):
     print('save:', j * 100, (j + 1) * 100)
@@ -118,8 +120,8 @@ def get_count(x):
         return x[0].split(":")[1]
 
 
-train_add = pd.read_json(os.path.join(path, 'train_all_json/train_additional.json'))
-test_add = pd.read_json(os.path.join(path, 'test_all_json/test_additional.json'))
+train_add = pd.read_json(os.path.join(path, 'train_all_json/train_additional_information.json'))
+test_add = pd.read_json(os.path.join(path, 'test_all_json/test_additional_information.json'))
 all_data = pd.concat([train_add, test_add], axis=0, sort=False)
 pa = all_data.Pathalias.unique()
 for j in range(0, 365):
