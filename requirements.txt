@@ -10,3 +10,4 @@ catboost==0.24.2
 lightgbm==3.1.0
 cchardet
 lxml
+gdown
