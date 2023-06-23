@@ -37,7 +37,7 @@ def crawl(url):
 
 # imgs['url'] = imgs.img.apply(crawl)
 
-imgs = pd.read_csv(os.path.join(path, 'train_all_json/train_img_filepath.txt'), header=None, names=['img'])
+imgs = pd.read_csv(os.path.join(path, 'train_allmetada_json/train_img_filepath.txt'), header=None, names=['img'])
 # img count 305613
 for j in range(0, 3050):
     print('save:', j * 100, (j + 1) * 100)
@@ -112,7 +112,6 @@ def get_d(pa):
         totalGeotagged) + "\t" + get_count(totalFaves) + "\t" + get_count(totalInGroup) + "\t" + get_count(
         photoCount) + "\t" + get_count(followerCount) + "\t" + get_count(followingCount)
 
-
 def get_count(x):
     if len(x) == 0:
         return '0'
@@ -120,8 +119,8 @@ def get_count(x):
         return x[0].split(":")[1]
 
 
-train_add = pd.read_json(os.path.join(path, 'train_all_json/train_additional_information.json'))
-test_add = pd.read_json(os.path.join(path, 'test_all_json/test_additional_information.json'))
+train_add = pd.read_json(os.path.join(path, 'train_allmetada_json/train_additional_information.json'))
+test_add = pd.read_json(os.path.join(path, 'test_allmetada_json/test_additional_information.json'))
 all_data = pd.concat([train_add, test_add], axis=0, sort=False)
 pa = all_data.Pathalias.unique()
 for j in range(0, 365):
