@@ -54,26 +54,26 @@ np.random.seed(random_seed)
 # In[2]:
 
 
-train_category = json.load(open('./data/train_all_json/train_category.json', encoding="utf-8"))
+train_category = json.load(open('./data/train_allmetadata_json/train_category.json', encoding="utf-8"))
 train_category_pd = pd.DataFrame(train_category)
 
-train_additional = json.load(open('./data/train_all_json/train_additional_information.json', encoding="utf-8"))
+train_additional = json.load(open('./data/train_allmetadata_json/train_additional_information.json', encoding="utf-8"))
 train_additional_pd = pd.DataFrame(train_additional)
 
-train_tags = json.load(open('./data/train_all_json/train_text.json', encoding="utf-8"))
+train_tags = json.load(open('./data/train_allmetadata_json/train_text.json', encoding="utf-8"))
 train_tags_pd = pd.DataFrame(train_tags)
 
-train_temporalspatial = json.load(open('./data/train_all_json/train_temporalspatial_information.json', encoding="utf-8"))
+train_temporalspatial = json.load(open('./data/train_allmetadata_json/train_temporalspatial_information.json', encoding="utf-8"))
 train_temporalspatial_pd = pd.DataFrame(train_temporalspatial)
 
-train_userdata = json.load(open('./data/train_all_json/train_user_data.json', encoding="utf-8"))
+train_userdata = json.load(open('./data/train_allmetadata_json/train_user_data.json', encoding="utf-8"))
 train_userdata_pd = pd.DataFrame(train_userdata)
 
-train_img_pd = pd.read_csv('./data/train_all_json/train_img.txt', header=None)
+train_img_pd = pd.read_csv('./data/train_allmetadata_json/train_img.txt', header=None)
 train_img_pd.columns = ['img']
 train_img_pd['img_file'] = train_img_pd['img'].apply(lambda x: './data/train/' + x[30:] + '.jpg')
 
-train_label_pd = pd.read_csv('./data/train_all_json/train_label.txt', header=None)
+train_label_pd = pd.read_csv('./data/train_allmetadata_json/train_label.txt', header=None)
 train_label_pd.columns = ['label']
 
 train_data = train_category_pd.merge(train_additional_pd, on=('Pid', 'Uid'), how='left')
@@ -88,22 +88,22 @@ print(train_data.columns)
 # In[3]:
 
 
-test_category = json.load(open('./data/test_all_json/test_category.json', encoding="utf-8"))
+test_category = json.load(open('./data/test_allmetadata_json/test_category.json', encoding="utf-8"))
 test_category_pd = pd.DataFrame(test_category)
 
-test_additional = json.load(open('./data/test_all_json/test_additional_information.json', encoding="utf-8"))
+test_additional = json.load(open('./data/test_allmetadata_json/test_additional_information.json', encoding="utf-8"))
 test_additional_pd = pd.DataFrame(test_additional)
 
-test_tags = json.load(open('./data/test_all_json/test_text.json', encoding="utf-8"))
+test_tags = json.load(open('./data/test_allmetadata_json/test_text.json', encoding="utf-8"))
 test_tags_pd = pd.DataFrame(test_tags)
 
-test_temporalspatial = json.load(open('./data/test_all_json/test_temporalspatial_information.json', encoding="utf-8"))
+test_temporalspatial = json.load(open('./data/test_allmetadata_json/test_temporalspatial_information.json', encoding="utf-8"))
 test_temporalspatial_pd = pd.DataFrame(test_temporalspatial)
 
-test_userdata = json.load(open('./data/test_all_json/test_user_data.json', encoding="utf-8"))
+test_userdata = json.load(open('./data/test_allmetadata_json/test_user_data.json', encoding="utf-8"))
 test_userdata_pd = pd.DataFrame(test_userdata)
 
-test_img_pd = pd.read_csv('./data/test_all_json/test_imgfile.txt', header=None)
+test_img_pd = pd.read_csv('./data/test_allmetadata_json/test_imgfile.txt', header=None)
 test_img_pd.columns = ['img']
 # test_img_pd['img_file'] = test_img_pd['img']
 test_img_pd['img_file'] = test_img_pd['img']
